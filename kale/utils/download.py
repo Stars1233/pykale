@@ -23,12 +23,17 @@ def _retry_download(download_fn, retries=3, backoff=2):
 
     Args:
         download_fn (callable): Zero-argument callable that performs the download.
-        retries (int): Maximum number of attempts. Defaults to 3.
-        backoff (int): Base for exponential back-off in seconds. Defaults to 2.
+        retries (int): Maximum number of attempts. Must be >= 1. Defaults to 3.
+        backoff (int): Base for exponential back-off in seconds. Must be >= 1. Defaults to 2.
 
     Raises:
+        ValueError: If ``retries`` < 1 or ``backoff`` < 1.
         Exception: Re-raises the last exception when all retries are exhausted.
     """
+    if retries < 1:
+        raise ValueError(f"retries must be >= 1, got {retries}")
+    if backoff < 1:
+        raise ValueError(f"backoff must be >= 1, got {backoff}")
     for attempt in range(retries):
         try:
             download_fn()

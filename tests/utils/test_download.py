@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import call, MagicMock, patch
 
 import pytest
 
@@ -20,7 +20,7 @@ GDRIVE_PARAM = [
 
 def test_retry_download_succeeds_on_first_attempt():
     fn = MagicMock()
-    _retry_download(fn, retries=3, backoff=0)
+    _retry_download(fn, retries=3, backoff=2)
     fn.assert_called_once()
 
 
@@ -29,7 +29,7 @@ def test_retry_download_retries_on_failure():
     with patch("kale.utils.download.time.sleep") as mock_sleep:
         _retry_download(fn, retries=3, backoff=2)
     assert fn.call_count == 3
-    assert mock_sleep.call_count == 2
+    mock_sleep.assert_has_calls([call(1), call(2)])
 
 
 def test_retry_download_raises_after_all_retries():
@@ -38,6 +38,15 @@ def test_retry_download_raises_after_all_retries():
         with pytest.raises(RuntimeError, match="timeout"):
             _retry_download(fn, retries=3, backoff=2)
     assert fn.call_count == 3
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [{"retries": 0}, {"retries": -1}, {"backoff": 0}, {"backoff": -1}],
+)
+def test_retry_download_invalid_args(kwargs):
+    with pytest.raises(ValueError):
+        _retry_download(MagicMock(), **kwargs)
 
 
 def test_download_file_by_url_archive_uses_retry(tmp_path):
