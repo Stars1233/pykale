@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -38,6 +38,18 @@ def test_retry_download_raises_after_all_retries():
         with pytest.raises(RuntimeError, match="timeout"):
             _retry_download(fn, retries=3, backoff=2)
     assert fn.call_count == 3
+
+
+def test_download_file_by_url_archive_uses_retry(tmp_path):
+    with patch("kale.utils.download.download_and_extract_archive") as mock_dl:
+        download_file_by_url("http://example.com/data.zip", tmp_path, "data.zip", "zip")
+    mock_dl.assert_called_once()
+
+
+def test_download_file_by_url_plain_uses_retry(tmp_path):
+    with patch("kale.utils.download.download_url_to_file") as mock_dl:
+        download_file_by_url("http://example.com/data.pkl", tmp_path, "data.pkl", "pkl")
+    mock_dl.assert_called_once()
 
 
 @pytest.mark.parametrize("param", PARAM)

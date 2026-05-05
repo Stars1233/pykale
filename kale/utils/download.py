@@ -35,7 +35,7 @@ def _retry_download(download_fn, retries=3, backoff=2):
             return
         except Exception as exc:
             if attempt < retries - 1:
-                wait = backoff ** attempt
+                wait = backoff**attempt
                 logging.warning(
                     "Download failed (attempt %d/%d): %s. Retrying in %ds...",
                     attempt + 1,
@@ -81,7 +81,9 @@ def download_file_by_url(url, output_directory, output_file_name, file_format=No
     if file_format in ["tar.xz", "tar", "tar.gz", "tgz", "gz", "zip"]:
         logging.info("Downloading and extracting {}.".format(output_file_name))
 
-        _retry_download(lambda: download_and_extract_archive(url=url, download_root=output_directory, filename=output_file_name))
+        _retry_download(
+            lambda: download_and_extract_archive(url=url, download_root=output_directory, filename=output_file_name)
+        )
         logging.info("Datasets downloaded and extracted in {}".format(file))
     else:
         logging.info("Downloading {}.".format(output_file_name))
