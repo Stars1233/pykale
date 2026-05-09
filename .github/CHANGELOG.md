@@ -4,7 +4,7 @@
 
 * [#281](https://github.com/pykale/pykale/pull/281): Add quantile binning for uncertainty estimation including error bound estimation and evaluation metrics
 * [#360](https://github.com/pykale/pykale/pull/360): Add multimodal neural network for multimodal data integration with AVMNIST example
-* [#361](https://github.com/pykale/pykale/pull/361): Add MOGONET for multiomics integration 
+* [#361](https://github.com/pykale/pykale/pull/361): Add MOGONET for multiomics integration
 * [#395](https://github.com/pykale/pykale/pull/395): Create main.py, cross_validation for multisite_neuroimg_adapt example
 * [#407](https://github.com/pykale/pykale/pull/407): Add prototypical network
 * [#437](https://github.com/pykale/pykale/pull/437): Add mida_trainer pipeline
@@ -69,7 +69,7 @@
 #### Documentation Updates
 
 * [#432](https://github.com/pykale/pykale/pull/432): Refine test ReadMe
-* [#436](https://github.com/pykale/pykale/pull/436): Fix bugs of greek letters in docstring.
+* [#436](https://github.com/pykale/pykale/pull/436): Fix bugs of greek letters in docstring
 * [#493](https://github.com/pykale/pykale/pull/493): Update `embed` ReadMe
 * [#499](https://github.com/pykale/pykale/pull/499): Add workshop and tutorial repository links
 * [#501](https://github.com/pykale/pykale/pull/501): Update EMBC workshop link
