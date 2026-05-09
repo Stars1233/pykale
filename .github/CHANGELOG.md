@@ -16,7 +16,7 @@
 * [#475](https://github.com/pykale/pykale/pull/475): Add feature importance interpretation to MOGONET example
 * [#476](https://github.com/pykale/pykale/pull/476): Allow custom param_grid for AutoMIDAClassificationTrainer
 * [#477](https://github.com/pykale/pykale/pull/477): Add Integrated Gradients interpretation method and minor refinements
-  
+
 #### Bug Fixes
 
 * [#423](https://github.com/pykale/pykale/pull/423): Update the default checkpoint (ckpt) resume and test file name to None
@@ -26,7 +26,7 @@
 * [#455](https://github.com/pykale/pykale/pull/455): Fix device allocation error, resolve type mismatches, and update repo configurations
 * [#456](https://github.com/pykale/pykale/pull/456): Support Python 3.11 and stop support Python 3.8
 * [#459](https://github.com/pykale/pykale/pull/459): Upgrade minimum sklearn version from 0.23.2 to 1.6.1
-* [#472](https://github.com/pykale/pykale/pull/472): Fix auto-unwrapping in the multiomics example.
+* [#472](https://github.com/pykale/pykale/pull/472): Fix auto-unwrapping in the multiomics example
 * [#481](https://github.com/pykale/pykale/pull/481): Support torch 2.6
 * [#482](https://github.com/pykale/pykale/pull/482): Set neurokit2<=0.2.11 in setup.py
 * [#487](https://github.com/pykale/pykale/pull/487): Fix circular import and refactor correlation analysis
