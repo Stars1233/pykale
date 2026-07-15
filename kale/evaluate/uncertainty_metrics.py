@@ -23,7 +23,6 @@ Main Classes:
     - QuantileCalculator: Quantile-based error distribution analysis
     - MetricsCalculator: Statistical metrics computation
 """
-
 import copy
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
@@ -1545,12 +1544,12 @@ def evaluate_bounds(
             ]
 
             for target_idx in range(len(all_concat_errorbound_bins_target_sep_foldwise)):
-                all_concat_errorbound_bins_target_sep_foldwise[target_idx][model + " " + uncertainty_type] = (
-                    fold_all_bins_concat_targets_sep_foldwise[target_idx]
-                )
-                all_concat_errorbound_bins_target_sep_all[target_idx][model + " " + uncertainty_type] = (
-                    fold_all_bins_concat_targets_sep_all[target_idx]
-                )
+                all_concat_errorbound_bins_target_sep_foldwise[target_idx][
+                    model + " " + uncertainty_type
+                ] = fold_all_bins_concat_targets_sep_foldwise[target_idx]
+                all_concat_errorbound_bins_target_sep_all[target_idx][
+                    model + " " + uncertainty_type
+                ] = fold_all_bins_concat_targets_sep_all[target_idx]
 
     return {
         "error_bounds_all": all_bound_percents,
@@ -1871,12 +1870,12 @@ def get_mean_errors(
             all_concat_error_bins_target_nosep[model + " " + uncertainty_type] = fold_all_bins_concat_targets_nosep
 
             for target_idx in range(len(fold_all_bins_concat_targets_sep_foldwise)):
-                all_concat_error_bins_target_sep_foldwise[target_idx][model + " " + uncertainty_type] = (
-                    fold_all_bins_concat_targets_sep_foldwise[target_idx]
-                )
-                all_concat_error_bins_target_sep_all[target_idx][model + " " + uncertainty_type] = (
-                    fold_all_bins_concat_targets_sep_all[target_idx]
-                )
+                all_concat_error_bins_target_sep_foldwise[target_idx][
+                    model + " " + uncertainty_type
+                ] = fold_all_bins_concat_targets_sep_foldwise[target_idx]
+                all_concat_error_bins_target_sep_all[target_idx][
+                    model + " " + uncertainty_type
+                ] = fold_all_bins_concat_targets_sep_all[target_idx]
 
     return {
         "all_mean_error_bins_nosep": all_mean_error_bins,
