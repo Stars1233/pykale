@@ -105,7 +105,8 @@ class ProtoNetTrainer(pl.LightningModule):
         Args:
             feature_support (torch.Tensor): Support features.
             feature_query (torch.Tensor): Query features.
-            mode (str): Mode of the trainer, "train", "val" or "test". Default: "train".
+            mode (str): Mode of the trainer, "train" or "val" (the loss used for validation is also
+                used for testing). Default: "train".
 
         Returns:
             loss (torch.Tensor): Loss value.
