@@ -29,7 +29,11 @@ def test_bimodal_vae_full_coverage():
         mu_cuda, log_var_cuda = model.prior_expert((1, batch_size, latent_dim), use_cuda=True)
         assert mu_cuda.shape == (1, batch_size, latent_dim)
         assert log_var_cuda.shape == (1, batch_size, latent_dim)
-        assert mock_zeros.call_args.kwargs["device"] == "cuda"
+        # Both the mean and log-variance tensors must be created on the cuda device, so check every
+        # call rather than only the last one - otherwise a regression that placed just one of them
+        # correctly would slip through.
+        assert mock_zeros.call_count == 2
+        assert all(call.kwargs["device"] == "cuda" for call in mock_zeros.call_args_list)
 
     # --- Test reparametrize, both training and eval mode ---
     dummy_mu = torch.zeros(batch_size, latent_dim)
