@@ -9,7 +9,7 @@
 https://github.com/criteo-research/pytorch-ada/blob/master/adalib/ada/models/losses.py
 """
 from enum import Enum
-from typing import Optional
+from typing import Optional, Union
 
 import torch
 import torch.nn as nn
@@ -325,8 +325,8 @@ class protonet_loss:
     Args:
         num_classes (int): Number of classes in a task. Default: 5
         num_query_samples (int): Number of samples per class in the query set. Default: 15
-        device (torch.device, optional): The device in computation. Defaults to CUDA when it is
-            available and CPU otherwise.
+        device (str or torch.device, optional): The device in computation, accepted in either form
+            by ``Tensor.to``. Defaults to CUDA when it is available and CPU otherwise.
 
     Examples:
         >>> loss_fn = protonet_loss(num_classes=5, num_query_samples=15)
@@ -337,7 +337,7 @@ class protonet_loss:
     """
 
     def __init__(
-        self, num_classes: int = 5, num_query_samples: int = 15, device: Optional[torch.device] = None
+        self, num_classes: int = 5, num_query_samples: int = 15, device: Optional[Union[str, torch.device]] = None
     ) -> None:
         super().__init__()
         self.num_classes = num_classes
